@@ -1,0 +1,59 @@
+---
+title: "Problems and Solutions to Build the Book Advanced R Programming using Rstudio"
+author: "dingchendong"
+date: "2020/3/18"
+output: html_document
+---
+
+My computer system is 'windows7'.
+```{r eval=FALSE}
+git clone https://github.com/hadley/adv-r.git
+```
+Set working directory temporarily using
+```{r eval=FALSE}
+setwd("C:/Users/Administrator/mygit/adv-r")
+```
+Install R Package dependencies using
+```{r eval=FALSE}
+devtools::install_github("hadley/sloop")
+devtools::install_github("hadley/emo")
+```
+Finally,use'bookdown' package to compile the book.
+```{r eval=FALSE}
+bookdown::render_book("index.Rmd",output_format = "bookdown::pdf_book")
+```
+During the building process,i have met some problems,What is shown below is my problems and its solutions.
+
+## Unable to load devtools package
+
+```{r eval=FALSE}
+install.packages("devtools")
+```
+
+## Quitting from lines 223-235(Introduction.Rmd)
+
+Adding'encoding = "UTF-8"' in line 224 can fix it.
+```{r eval=FALSE}
+contributors <- read.csv("contributors.csv", stringsAsFactors = FALSE,encoding = "UTF-8")
+```
+
+## Quitting from lines 233-234(Perf-measure.Rmd)
+
+```{r eval=FALSE}
+install.packages("ggbeeswarm")
+```
+
+## 'make' not found
+Quitting from lines 77-84(Rcpp.Rmd)
+
+I added `C:\Rtools\bin\` to the path of the environment variable of the computer system, but the error still occurred, so I reinstalled `Rtools` and successfully solved this problem.
+
+## '"xelatex"' not found
+
+According to the yuanyelie's github,i use MiKTeX instead of TinyTex.And choose "Always install missing packages on-the-fly"when MiKTeX let me choose whether missing packages are to be installed.
+
+## Font
+
+I downloaded the font 'andalemono'and'inconsolata'from the internet and install.
+
+After 2 days of intermittent compolation,the book was finally build.
